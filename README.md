@@ -1,2 +1,2 @@
 # Sample Code Snippets
-This project includes various sample code snippets. 
+This project includes various samples and code snippets. 
