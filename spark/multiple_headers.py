@@ -11,7 +11,7 @@ FILE_PATH = '<your-file-path>' # e.g. '/FileStore/tables/test.csv'
 # read file as textfile
 data = sc.textFile(FILE_PATH)
 
-# save the lines to filter
+# save the lines that should be dropped
 lines_to_filter = data.take(3)[1:]
 
 # filter the lines
