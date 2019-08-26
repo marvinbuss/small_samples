@@ -15,7 +15,7 @@ KEY_NAME = "<key-name-for-your-storage-account-access-key>"
 # set the credentials to access the azure data lake v2 storage resource
 sc._jsc.hadoopConfiguration().set(
   "fs.azure.account.key." + STORAGE_ACCOUNT_NAME + ".dfs.core.windows.net",
-  dbutils.secrets.get(scope = SCOPE_NAME, key = KEY_NAME)
+  dbutils.secrets.get(scope = SCOPE_NAME, key = KEY_NAME))
 
 # set the file path and load the raw data
 FILE_PATH = "abfss://" + STORAGE_CONTAINER + "@" + STORAGE_ACCOUNT_NAME + ".dfs.core.windows.net/" + LOCAL_FILE_PATH
