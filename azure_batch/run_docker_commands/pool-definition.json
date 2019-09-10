@@ -1,0 +1,76 @@
+{
+    "parameters": {
+        "nodeCount": {
+            "type": "int",
+            "defaultValue": 1,
+            "metadata": {
+                "description": "The number of nodes of the batch pool"
+            }
+        },
+        "poolId": {
+            "type": "string",
+            "defaultValue": "mypool",
+            "metadata": {
+                "description": "The batch pool ID"
+            }
+        },
+        "poolSku": {
+            "type": "string",
+            "defaultValue": "STANDARD_D3_V2",
+            "metadata": {
+                "description": "The SKU of the batch pool"
+            }
+        },
+        "storageAccountName": {
+            "type": "string",
+            "defaultValue": "mystorageaccountname",
+            "metadata": {
+                "description": "The storage account name where the .sh script is saved"
+            }
+        },
+        "storageAccountContainerName": {
+            "type": "string",
+            "defaultValue": "mystorageaccountcontainername",
+            "metadata": {
+                "description": "The container name of the storage account where the .sh script is saved"
+            }
+        }
+    },
+    "pool": {
+        "type": "Microsoft.Batch/batchAccounts/pools",
+        "apiVersion": "2016-12-01",
+        "properties": {
+            "id": "[parameters('poolId')]",
+            "virtualMachineConfiguration": {
+                "imageReference": {
+                    "publisher": "Canonical",
+                    "offer": "UbuntuServer",
+                    "sku": "18.04-LTS",
+                    "version": "latest"
+                },
+                "nodeAgentSKUId": "batch.node.ubuntu 18.04"
+            },
+            "vmSize": "[parameters('poolSku')]",
+            "targetDedicatedNodes": "[parameters('nodeCount')]",
+            "enableAutoScale": false,
+            "startTask": {
+                "commandLine": "./starttask.sh",
+                "resourceFiles": [
+                        {
+                            "httpUrl": "https://[parameters('storageAccountName')].blob.core.windows.net/[parameters('storageAccountContainerName')]/starttask.sh",
+                            "filePath": "starttask.sh"
+                        }
+                    ],
+                    "userIdentity": {
+                        "autoUser": {
+                            "scope": "pool",
+                            "elevationLevel": "admin"
+                        }
+                    },
+                "maxTaskRetryCount": 0,
+                "waitForSuccess": true
+            },
+            "maxTasksPerNode": 1
+        }
+    }
+}

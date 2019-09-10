@@ -1,0 +1,17 @@
+{
+  "poolId": {
+    "value": "mypool"
+  },
+  "poolSku": {
+    "value": "STANDARD_D3_V2"
+  },
+  "nodeCount": {
+    "value": 1
+  },
+  "storageAccountName": {
+    "value": "mystorageaccountname"
+  },
+  "storageAccountContainerName": {
+    "value": "mystorageaccountcontainername"
+  }
+}
