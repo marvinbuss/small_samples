@@ -1,6 +1,6 @@
-# Run Docker commands directly on an Azure Pool
+# Run Docker commands directly on an Azure Batch Pool
 
-**NOTE:** Running Docker (`docker run ...`) commands directly on a Batch Pool generally results in an execution on a single node. Running workloads in such a way does not scale as the recommended way, which is described [here](https://docs.microsoft.com/en-us/azure/batch/batch-docker-container-workloads).
+**NOTE:** Running Docker (`docker run ...`) commands directly on an Azure Batch Pool generally results in an execution on a single node. Running workloads in such a way does not scale as the recommended way, which is described [here](https://docs.microsoft.com/en-us/azure/batch/batch-docker-container-workloads).
 
 ## Prerequisites
 
